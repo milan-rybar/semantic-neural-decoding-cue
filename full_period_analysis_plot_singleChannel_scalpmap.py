@@ -68,13 +68,6 @@ classifier_names = {
 table = []
 for res in results:
     for rr in res['results']:
-        # TODO: temporally to fix the incorrect directory name for the sliding window approach
-        if 'time_end' in rr:
-            continue
-        # TODO: ignore image on Dataset 2 with only 600ms
-        if rr['event_name'] == 'image' and res['info']['epoch_length'] != dataset.image_length:
-            continue
-
         row = res['info'].copy()
         row.update(rr)
 
