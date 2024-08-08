@@ -64,6 +64,7 @@ classifier_names = {
     'LR_L1_CV': 'LR L1 (CV)',
     'LR_L2': 'LR L2',
     'LDA': 'LDA',
+    'RandomForest': 'RF (CV)',
 }
 
 table = []
@@ -146,7 +147,7 @@ axes = grid
 
 # col_idx = 0
 row_idx = 0
-for col_idx, classifier_name in enumerate(sorted(df['classifier_name'].unique())):
+for col_idx, classifier_name in enumerate(classifier_names.keys()):
     ax = axes[col_idx]
 
     df_selection = df[
@@ -199,5 +200,5 @@ cbar.ax.set_ylabel('Accuracy')
 
 output_path = results_path + '_plots'
 make_dirs(output_path)
-fig.savefig(os.path.join(output_path, 'P_boxplot_singleChannel_scalpmap.pdf'), bbox_inches='tight')
+fig.savefig(os.path.join(output_path, 'P2_boxplot_singleChannel_scalpmap.pdf'), bbox_inches='tight')
 plt.close(fig)

@@ -55,8 +55,8 @@ plt.hist(mean_accuracies)
 
 #%%
 for alpha in [5, 1, 0.1, 0.01, 0.001, 0.0001]:
-    treshold = np.percentile(mean_accuracies, 100 - alpha) * 100
-    print(alpha, alpha / 100.0, '{:.2f}'.format(treshold), treshold)
+    threshold = np.percentile(mean_accuracies, 100 - alpha) * 100
+    print(alpha, alpha / 100.0, '{:.2f}'.format(threshold), threshold)
 
 
 # Dataset 1

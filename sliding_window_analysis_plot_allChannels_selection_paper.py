@@ -63,6 +63,7 @@ for dataset_name in dataset_names:
         'LR_L1_CV': 'LR L1 (CV)',
         'LR_L2': 'LR L2',
         'LDA': 'LDA',
+        'RandomForest': 'RF (CV)',
     }
 
     table = []
@@ -113,7 +114,7 @@ for dataset_name, dataset, df, ax in zip(dataset_names, datasets, dfs, axes):
                       # dodge=True,
                       palette='colorblind',
                       # order=list(titles.values()),
-                      hue_order=['SVM', 'SVM (CV)', 'LR L1', 'LR L1 (CV)', 'LR L2', 'LDA'],
+                      hue_order=list(classifier_names.values()),
                       lw=1,
                       ax=ax)
 
@@ -144,6 +145,7 @@ for dataset_name, dataset, df, ax in zip(dataset_names, datasets, dfs, axes):
               handlelength=1.5,
               handleheight=0.5,
               # borderaxespad=0.0
+              prop={'size': 8}
               )
     if dataset_name == 'Data2':
         ax.get_legend().remove()
@@ -159,5 +161,5 @@ fig.tight_layout()
 
 output_path = results_path + '_plots'
 make_dirs(output_path)
-fig.savefig(os.path.join(output_path, 'P_AGG_mean_acc_allChannels_selection.pdf'), bbox_inches='tight')
+fig.savefig(os.path.join(output_path, 'P2_AGG_mean_acc_allChannels_selection.pdf'), bbox_inches='tight')
 plt.close(fig)

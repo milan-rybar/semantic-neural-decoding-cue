@@ -62,6 +62,7 @@ for dataset_name in dataset_names:
         'LR_L1_CV': 'LR L1 (CV)',
         'LR_L2': 'LR L2',
         'LDA': 'LDA',
+        'RandomForest': 'RF (CV)',
     }
 
     table = []
@@ -127,7 +128,7 @@ for dataset_name, dataset, df, ax in zip(dataset_names, datasets, dfs, axes):
     sns_kwargs = dict(data=df_selection, x='event_title', y='significant', hue='classifier_title',
                       dodge=True, palette='colorblind',
                       order=sns_event_order,
-                      hue_order=['SVM', 'SVM (CV)', 'LR L1', 'LR L1 (CV)', 'LR L2', 'LDA'],
+                      hue_order=list(classifier_names.values()),
                       ax=ax)
 
     sns.boxplot(**sns_kwargs,
@@ -178,5 +179,5 @@ fig.tight_layout()
 
 output_path = results_path + '_plots'
 make_dirs(output_path)
-fig.savefig(os.path.join(output_path, 'P_AGG_boxplot_singleChannel_percentage.pdf'), bbox_inches='tight')
+fig.savefig(os.path.join(output_path, 'P2_AGG_boxplot_singleChannel_percentage.pdf'), bbox_inches='tight')
 plt.close(fig)

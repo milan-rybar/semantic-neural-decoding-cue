@@ -1,6 +1,7 @@
 import matplotlib
 matplotlib.use('pgf')
 
+import numpy as np
 from matplotlib import pyplot as plt
 import seaborn as sns
 plt.style.use('seaborn-paper')
@@ -28,6 +29,7 @@ sns.set_context("paper")
 import os
 from glob import glob
 import pandas as pd
+from collections import defaultdict
 
 from config import RESULTS_PATH, DATASETS
 from common import make_dirs, unpickle_dict
@@ -64,6 +66,7 @@ for dataset_name in dataset_names:
         'LR_L1_CV': 'LR L1 (CV)',
         'LR_L2': 'LR L2',
         'LDA': 'LDA',
+        'RandomForest': 'Random Forest (CV)',
     }
 
     table = []
@@ -116,6 +119,28 @@ for dataset_name, dataset, df, ax in zip(dataset_names, datasets, dfs, axes):
                       order=sns_event_order,
                       hue_order=list(sorted(df_selection['n_components'].unique())),
                       ax=ax)
+
+    # print participants with significant classification accuracies
+    sig_individuals = defaultdict(list)
+    for row in df_selection.iloc:
+        # individual thresholds for p-value = 0.05
+        threshold = DATASETS[row['dataset_name']]['cls'].individual_acc_threshold[row['exp_n']]
+        if row['score'] > threshold:
+            sig_individuals[(row['event_name'], row['classifier_name'], row['n_components'])].append(row['exp_n'])
+
+    print('=====')
+    print(dataset_name)
+    for k in sorted(sig_individuals.keys()):
+        print(k, sorted(sig_individuals[k]))
+    print('=====')
+
+    # number of participants with significant accuracies across all classifiers
+    for event_name in event_order:
+        for n_components in sorted(df['n_components'].unique()):
+            counts = [len(sig_individuals[(event_name, classifier_name, n_components)]) for classifier_name in classifier_names.keys()]
+            print(event_name, n_components, f'{np.mean(counts):.1f}', counts)
+    print('=====')
+
 
     sns.boxplot(**sns_kwargs,
                 notch=False,
@@ -170,5 +195,5 @@ fig.tight_layout()
 
 output_path = results_path + '_plots'
 make_dirs(output_path)
-fig.savefig(os.path.join(output_path, f'P_AGG_boxplot_selection.pdf'), bbox_inches='tight')
+fig.savefig(os.path.join(output_path, f'P2_AGG_boxplot_selection.pdf'), bbox_inches='tight')
 plt.close(fig)

@@ -55,6 +55,7 @@ classifier_names = {
     'LR_L1_CV': 'LR L1 (CV)',
     'LR_L2': 'LR L2',
     'LDA': 'LDA',
+    'RandomForest': 'RandomForest',
 }
 
 table = []

@@ -1,5 +1,6 @@
 import numpy as np
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
 from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVC
@@ -19,5 +20,6 @@ CLASSIFIERS_OPTIONS = {
     'SVM_C1': SVC(kernel='rbf', C=1, cache_size=10000),
     'SVM_CV_C': GridSearchCV(SVC(kernel='rbf', cache_size=10000), {'C': np.logspace(-2, 2, 100)}, cv=10, n_jobs=4),
     'LDA': LinearDiscriminantAnalysis(),
-    'LR_L2': LogisticRegression(max_iter=100000, penalty='l2')
+    'LR_L2': LogisticRegression(max_iter=100000, penalty='l2'),
+    'RandomForest': GridSearchCV(RandomForestClassifier(), {'n_estimators': [10, 100, 200, 500], 'max_depth': [5, 10, None]}, cv=10, n_jobs=4),
 }
