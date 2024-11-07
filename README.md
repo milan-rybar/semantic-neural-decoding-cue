@@ -1,6 +1,6 @@
-# Is EEG-based semantic decoding possible? Challenges with semantic cueing and implications for BCIs
+# Using data from cue presentations results in grossly overestimating semantic BCI performance
 
-Source code for the paper "Is EEG-based semantic decoding possible? Challenges with semantic cueing and implications for BCIs".
+Source code for the paper "Using data from cue presentations results in grossly overestimating semantic BCI performance".
 
 ### Data and Results paths
 
