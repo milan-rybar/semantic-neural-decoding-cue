@@ -12,8 +12,8 @@ Change the following variables in `config.py`:
 
 - `full_period_analysis.py`: An analysis using all time points of corresponding regions of interest. 
 - `sliding_window.py`: An analysis using a sliding window approach.
-- `replicate_Simanova_analysis.py`: An analysis based on a study by Simanova _et al_.
-- `replicate_Murphy_analysis.py`: An analysis based on a study by Murphy _et al_.
+- `replicate_Simanova_analysis.py`: An analysis based on a study by Simanova _et al_ (2010).
+- `replicate_Murphy_analysis.py`: An analysis based on a study by Murphy _et al_ (2011).
 
 Scripts with suffix names `*_plot_*` plot the corresponding analysis results.
 
