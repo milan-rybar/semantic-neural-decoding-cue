@@ -1,6 +1,6 @@
 # Using data from cue presentations results in grossly overestimating semantic BCI performance
 
-Source code for the paper "Using data from cue presentations results in grossly overestimating semantic BCI performance".
+Source code for the paper "Using data from cue presentations results in grossly overestimating semantic BCI performance", [https://doi.org/10.1038/s41598-024-79309-y](https://doi.org/10.1038/s41598-024-79309-y)
 
 ### Data and Results paths
 
